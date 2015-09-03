@@ -3,7 +3,7 @@ extern crate regex;
 extern crate encoding;
 extern crate thread_scoped;
 
-use self::hyper::client::Client;
+use self::hyper::client::Client; //FUCK: why 'self' needed?
 use self::hyper::status::StatusCode;
 use self::regex::Regex;
 use std::io::Read;

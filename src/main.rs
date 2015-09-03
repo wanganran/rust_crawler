@@ -6,6 +6,7 @@ use std::io::prelude::*;
 
 mod crawler;
 mod http_server;
+mod data_reader;
 
 fn append_to_file(arr:Vec<(String, Option<String>)>, path:String){ //FUCK: here arr can't be reference or we cannot do the pattern matching
     let mut file=OpenOptions::new().create(true).append(true).write(true).open(path).unwrap();
@@ -40,12 +41,12 @@ fn exec(comm:String, arg:String)->String{
     String::from_utf8(output.stdout).unwrap()
 }
 fn refine(old_path:String, new_path:String){
-    let list=read_list_from_file(old_path.clone());
+    let list=data_reader::read_list_from_file(old_path.clone());
     let mut newvec=vec!();
     let mut file=OpenOptions::new().read(true).open(old_path.clone()).unwrap();
     let mut buf_reader=BufReader::new(&file);
     for tuple in list.into_iter(){
-        match read_def_from_file(&tuple, &mut buf_reader){
+        match data_reader::read_def_from_file(&tuple, &mut buf_reader){
             None=>{
                 println!("{} refining...",tuple.0);
                 let newdef=exec("/usr/local/bin/sdcv".to_string(),tuple.0.clone()); //FUCK: tuple element need to be cloned
