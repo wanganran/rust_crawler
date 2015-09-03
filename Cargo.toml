@@ -1,0 +1,10 @@
+[package]
+name = "fuzzy_dict"
+version = "0.1.0"
+authors = ["wanganran <wanganran01@gmail.com>"]
+
+[dependencies]
+thread-scoped = "1.0.1"
+hyper = "0.6.10"
+regex = "0.1.8"
+encoding= "0.2.32"
