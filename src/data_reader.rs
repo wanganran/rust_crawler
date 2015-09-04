@@ -1,4 +1,4 @@
-use std::fs::{OpenOptions,Files};
+use std::fs::{OpenOptions,File};
 use std::io::{SeekFrom, BufReader};
 use std::io::prelude::*; //FUCK: only compiler would tell you use this
 
