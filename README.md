@@ -1,13 +1,15 @@
 # rust_crawler
 a simple crawler written in rust to crawl English vocabulary and their definitions.
 
-I initially intended to make a web-based English dictionary that can find the candidates according to a given edit distance, but I finally give up when I found that it so so difficult to implement a three-stage index for strings (English words) in Rust, while it needs maybe just <10 lines of codes in Scala.
+I initially intended to make a web-based English dictionary that can find the candidates according to a given edit distance, but I finally gave up when I found that it so so difficult to implement a three-stage index for strings (English words) in Rust, while it needs maybe just <10 lines of codes in Scala.
 
-Now that it became only a crawler that parses the HTML and stores the entries to files. 
+Now it became only a crawler that parses the HTML and stores the entries to files. 
 This would be the first and the last little project I wrote in Rust. Rust is such a terrible language.
 
 The creators of Rust is ambitious and proposed it to avoid any errors caused by data race or null reference or other undefined behaviours, but it is too ambitious that the current version of Rust can only limit its ability and flexibility in order to realize it. 
+
 I can see the benefits of guaranteed safety that once the source codes are successfully compiled, it rarely goes wrong, but writing codes is such a terrible experience. For example, encountering unreasonably borrow or move or copy, you just don't know why a function returns a reference or non-reference, whether a structure can be copied, or only can be moved. You design a function that takes a non-reference parameter just want it to support pattern matching and varible binding, however in another function you call it with a parameter, then the parameter can never be used again.
+
 Its another acclaimed advantages, utilizing stack rather than heap, is totally inferior than its predecessor C/C++. For example, the lambda expressions in C++11 can totally allocate their resources in stack using compile-time known templates and other tricks to form the closure, while in Rust, a lambda expression can only be "boxed" in order to be passed to or returned to another procedure.
 
 The terrible points are commented in the source codes, started with "FUCK:".
@@ -27,5 +29,7 @@ The terrible points are commented in the source codes, started with "FUCK:".
 7. There are many `.unwrap()` in the codes. I know this is wrong but I also can't help myself writing so many error-handling codes for each `.unwrap()`. I have to admit that try-catch is more efficient, although Option/Result is more pretty.
 
 8. I finally find it always safe to use `clone()` whenever possible. Oh this is a bad inclination forced by the strict restrictions.
+
+9. Last but not the least, Rust lacks a REPL, also lacks an IDE. This makes it quite difficult to learn and debug. No successful language doesn't have a REPL as well as IDE. Although, frankly speaking, the error messages given by its compiler is quite accurate.
 
 All in all I won't use Rust again.
